@@ -1,0 +1,49 @@
+.team {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 80px 300px 80px;
+  grid-template-rows: auto auto auto;
+  grid-row-gap: 20px;
+  justify-content: center;
+}
+
+.team h1 {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: auto;
+  text-align: center;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.logo {
+  margin: auto;
+  height: 80px;
+  width: auto;
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+
+.remove {
+  margin: auto;
+  background-color: white;
+  border: 0;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.remove img {
+  height: 32px;
+  width: auto;
+}
+
+.remove:active,
+.remove:hover {
+  background-color: white;
+}
+
+.show {
+  margin: auto;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}

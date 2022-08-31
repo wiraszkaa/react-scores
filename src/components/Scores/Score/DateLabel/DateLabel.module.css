@@ -1,0 +1,17 @@
+.date-label {
+  padding-top: 10px;
+}
+
+.date-label img {
+  height: 18px;
+  width: auto;
+  padding-right: 10px;
+  padding-left: 10px;
+  vertical-align: middle;
+}
+
+.date-label p {
+  display: inline;
+  font-size: 20px;
+  vertical-align: middle;
+}

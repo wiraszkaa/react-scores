@@ -1,0 +1,12 @@
+.contribution {
+  height: fit-content;
+  width: fit-content;
+  display: grid;
+  position: fixed;
+  bottom: 0;
+  padding-left: 1rem;
+}
+
+.contribution a {
+  margin: auto;
+}

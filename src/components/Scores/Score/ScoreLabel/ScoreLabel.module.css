@@ -1,0 +1,13 @@
+.score-label img {
+  height: 60px;
+  width: auto;
+  padding-right: 10px;
+  padding-left: 10px;
+  vertical-align: middle;
+}
+
+.score-label p {
+  display: inline;
+  font-size: 40px;
+  vertical-align: middle;
+}

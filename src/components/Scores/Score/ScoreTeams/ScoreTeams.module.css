@@ -1,0 +1,24 @@
+.score-teams {
+  font: inherit;
+}
+
+.score-teams h1 {
+  display: inline;
+  padding: 10px;
+  vertical-align: top;
+}
+
+.score-teams img {
+  height: 32px;
+  width: auto;
+}
+
+.score-teams button {
+  border: 0;
+  background-color: white;
+}
+
+.score-teams button:active,
+.score-teams button:hover {
+  background-color: white;
+}

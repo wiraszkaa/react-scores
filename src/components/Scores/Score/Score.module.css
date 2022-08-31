@@ -1,0 +1,12 @@
+.score {
+  margin: auto;
+  padding: 1mm;
+  padding-top: 2mm;
+  text-align: center;
+  width: fit-content;
+}
+
+.score p {
+  margin: auto;
+  color: black;
+}

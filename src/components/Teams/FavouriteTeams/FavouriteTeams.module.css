@@ -1,0 +1,11 @@
+.favourite-teams {
+  margin: auto;
+  text-align: center;
+  width: fit-content;
+}
+
+.favourite-teams ul {
+  list-style: none;
+  margin: auto;
+  text-align: center;
+}
