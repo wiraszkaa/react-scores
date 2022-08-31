@@ -5,7 +5,7 @@ import ScoresList from "../../Scores/ScoresList/ScoresList";
 import { teamsActions } from "../../../store/teams";
 import classes from "./Team.module.css";
 import followOnIcon from "../../../assets/followon.png";
-import { loadAllScores, setFavouriteTeams } from "../../../lib/api";
+import { loadAllScores } from "../../../lib/api";
 import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
 import useHttp from "../../../hooks/use-http";
 
@@ -13,9 +13,7 @@ const Team = (props) => {
   const [showMatches, setShowMatches] = useState(false);
   const dispatch = useDispatch();
 
-  const token = useSelector((state) => state.ui.token);
-  const favourites = useSelector((state) => state.teams.favourites);
-
+  const userId = useSelector((state) => state.ui.userId);
   const team = useSelector((state) => state.teams.teams).find(
     (team) => team.id === props.id
   );
@@ -26,8 +24,7 @@ const Team = (props) => {
   );
 
   const removeFavouriteHandler = () => {
-    dispatch(teamsActions.toggleFavourite(team.id));
-    setFavouriteTeams(token, favourites);
+    dispatch(teamsActions.toggleFavourite({ userId, team }));
   };
 
   const toggleMatchesHandler = () => {
@@ -53,7 +50,14 @@ const Team = (props) => {
   }
 
   if (status === "completed") {
-    matches = <ScoresList scores={scores.filter(score => score.leftTeam === team.id || score.rightTeam === team.id)} cardOff={true}/>;
+    matches = (
+      <ScoresList
+        scores={scores.filter(
+          (score) => score.leftTeam === team.id || score.rightTeam === team.id
+        )}
+        cardOff={true}
+      />
+    );
   }
 
   return (

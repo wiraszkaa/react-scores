@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { setFavouriteTeams } from "../lib/api";
 
 const initialTeamsState = {
   teams: [],
@@ -12,17 +13,19 @@ const teamsSlice = createSlice({
     setTeams(state, action) {
       state.teams = action.payload.teams;
     },
+    setFavourites(state, action) {
+      state.favourites = action.payload.favourites;
+    },
     toggleFavourite(state, action) {
-      const selectedTeam = state.teams.find(
-        (team) => team.id === action.payload
-      );
-      if (state.favourites.find((team) => team.id === selectedTeam.id)) {
+      if (state.favourites.find((team) => team.id === action.payload.team.id)) {
         state.favourites = state.favourites.filter(
-          (team) => team.id !== selectedTeam.id
+          (team) => team.id !== action.payload.team.id
         );
       } else {
-        state.favourites.push(selectedTeam);
+        state.favourites.push(action.payload.team);
       }
+
+      setFavouriteTeams(action.payload.userId, state.favourites);
     },
   },
 });

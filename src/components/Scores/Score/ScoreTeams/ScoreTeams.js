@@ -4,13 +4,12 @@ import { teamsActions } from "../../../../store/teams";
 import classes from "./ScoreTeams.module.css";
 import followOnIcon from "../../../../assets/followon.png";
 import followOffIcon from "../../../../assets/followoff.png";
-import { setFavouriteTeams } from "../../../../lib/api";
 
 const ScoreTeams = (props) => {
   const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.ui.loggedIn);
   const favourites = useSelector((state) => state.teams.favourites);
-  const token = useSelector((state) => state.ui.token);
+  const userId = useSelector((state) => state.ui.userId);
 
   const isLeftFollowed =
     !!favourites.find((team) => team.id === props.leftTeam.id);
@@ -20,13 +19,11 @@ const ScoreTeams = (props) => {
   const teamLabel = `${props.leftTeam.short} - ${props.rightTeam.short}`;
 
   const leftFavouritesHandler = () => {
-    dispatch(teamsActions.toggleFavourite(props.leftTeam.id));
-    setFavouriteTeams(token, favourites);
+    dispatch(teamsActions.toggleFavourite({userId, team: props.leftTeam}));
   };
 
   const rightFavouritesHandler = () => {
-    dispatch(teamsActions.toggleFavourite(props.rightTeam.id));
-    setFavouriteTeams(token, favourites);
+    dispatch(teamsActions.toggleFavourite({userId, team: props.rightTeam}));
   };
 
   return (

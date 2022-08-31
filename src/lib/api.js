@@ -1,11 +1,23 @@
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, set } from "firebase/database";
+
 const loginUrl =
   "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
 const signUpUrl =
   "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=";
 const deleteUrl =
   "https://identitytoolkit.googleapis.com/v1/accounts:delete?key=";
-const url = process.env.REACT_APP_DATABASE;
+const url = process.env.REACT_APP_DATABASE + "/scores";
 const apiKey = process.env.REACT_APP_API_KEY;
+
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_API_KEY,
+  databaseURL: process.env.REACT_APP_DATABASE,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
 const loadAllHandler = async (url) => {
   const response = await fetch(url);
@@ -15,13 +27,13 @@ const loadAllHandler = async (url) => {
     throw new Error(data.error.message || "Could not fetch.");
   }
 
-  const teams = [];
+  const dataArray = [];
 
   for (let key in data) {
-    teams.push({ id: key, ...data[key] });
+    dataArray.push({ id: key, ...data[key] });
   }
 
-  return teams;
+  return dataArray;
 };
 
 export const loadAllTeams = () => {
@@ -53,34 +65,8 @@ export const loadScore = async (id) => {
   return { id, ...data };
 };
 
-export const addUser = async (email) => {
-  const response = await fetch(url + "/users.json", {
-    method: "POST",
-    body: JSON.stringify(email),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || "Could not fetch.");
-  }
-};
-
 export const setFavouriteTeams = async (userId, teams) => {
-  const response = await fetch(`${url}/users/${userId}/teams.json`, {
-    method: "PUSH",
-    body: JSON.stringify(teams),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || "Could not fetch.");
-  }
+  set(ref(db, `scores/users/${userId}`), { favouriteTeams: teams });
 };
 
 export const auth = async (userData) => {
@@ -120,4 +106,21 @@ export const deleteUser = async (id) => {
   if (!response.ok) {
     throw new Error(data.message || "Could not fetch.");
   }
+};
+
+export const getFavourites = async (userId) => {
+  const response = await fetch(`${url}/users/${userId}/favouriteTeams.json`);
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error.message || "Could not fetch.");
+  }
+
+  const dataArray = [];
+
+  for (let key in data) {
+    dataArray.push(data[key]);
+  }
+
+  return dataArray;
 };

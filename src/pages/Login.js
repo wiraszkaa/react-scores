@@ -26,6 +26,7 @@ const Login = () => {
           uiActions.login({
             token: data.idToken,
             expirationTime: data.expiresIn,
+            userId: data.localId,
           })
         );
         dispatch(uiActions.showInfo({ message: "Successfully logged in." }));

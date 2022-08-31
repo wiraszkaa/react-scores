@@ -14,3 +14,5 @@ React application for displaying football matches results
 - React Redux
 
 - react-transition-group
+
+- Firebase
