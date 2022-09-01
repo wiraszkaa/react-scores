@@ -1,0 +1,12 @@
+.leagueLabel h1 {
+    display: inline;
+    padding: 10px;
+    vertical-align: middle;
+    margin-right: 1rem;
+  }
+  
+  .leagueLabel img {
+    height: 32px;
+    width: auto;
+    vertical-align: middle;
+  }

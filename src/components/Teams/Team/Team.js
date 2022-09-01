@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Card from "../../../UI/Card/Card";
 import { useDispatch, useSelector } from "react-redux/es/exports";
-import ScoresList from "../../Scores/ScoresList/ScoresList";
+import ScoresList from "../../Scores/Scores";
 import { teamsActions } from "../../../store/teams";
 import classes from "./Team.module.css";
 import followOnIcon from "../../../assets/followon.png";
-import { loadAllScores } from "../../../lib/api";
-import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
-import useHttp from "../../../hooks/use-http";
 
 const Team = (props) => {
   const [showMatches, setShowMatches] = useState(false);
@@ -17,11 +14,7 @@ const Team = (props) => {
   const team = useSelector((state) => state.teams.teams).find(
     (team) => team.id === props.id
   );
-
-  const { sendRequest, error, status, data: scores } = useHttp(
-    loadAllScores,
-    true
-  );
+  const scores = useSelector((state) => state.scores.scores);
 
   const removeFavouriteHandler = () => {
     dispatch(teamsActions.toggleFavourite({ userId, team }));
@@ -31,34 +24,6 @@ const Team = (props) => {
     setShowMatches((prev) => !prev);
   };
 
-  useEffect(() => {
-    sendRequest();
-  }, [sendRequest]);
-
-  let matches = (
-    <div className="centered">
-      <LoadingSpinner />
-    </div>
-  );
-
-  if (error) {
-    matches = (
-      <div className="centered">
-        <p>{error}</p>
-      </div>
-    );
-  }
-
-  if (status === "completed") {
-    matches = (
-      <ScoresList
-        scores={scores.filter(
-          (score) => score.leftTeam === team.id || score.rightTeam === team.id
-        )}
-        cardOff={true}
-      />
-    );
-  }
 
   return (
     <li>
@@ -71,7 +36,12 @@ const Team = (props) => {
         <button className={classes.show} onClick={toggleMatchesHandler}>
           {showMatches ? "Hide Matches" : "Show Matches"}
         </button>
-        {showMatches && matches}
+        {showMatches && <ScoresList
+        scores={scores.filter(
+          (score) => score.leftTeam === team.id || score.rightTeam === team.id
+        )}
+        cardOff={true}
+      />}
       </Card>
     </li>
   );

@@ -1,0 +1,9 @@
+.leagues {
+  margin: auto;
+  text-align: center;
+}
+
+.leagues ul {
+  list-style: none;
+  margin: auto;
+}

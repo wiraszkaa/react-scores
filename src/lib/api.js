@@ -36,12 +36,29 @@ const loadAllHandler = async (url) => {
   return dataArray;
 };
 
+export const loadAllLeagues = () => {
+  return loadAllHandler(url + "/leagues.json");
+};
+
 export const loadAllTeams = () => {
   return loadAllHandler(url + "/teams.json");
 };
 
-export const loadAllScores = () => {
-  return loadAllHandler(url + "/scores.json");
+export const loadAllFavourites = async (userId) => {
+  const response = await fetch(`${url}/users/${userId}/favouriteTeams.json`);
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error.message || "Could not fetch.");
+  }
+
+  const dataArray = [];
+
+  for (let key in data) {
+    dataArray.push(data[key]);
+  }
+
+  return dataArray;
 };
 
 const loadOneHandler = async (url) => {
@@ -60,13 +77,12 @@ export const loadTeam = async (id) => {
   return { id, ...data };
 };
 
-export const loadScore = async (id) => {
-  const data = await loadOneHandler(`${url}/scores/${id}.json`);
-  return { id, ...data };
-};
-
 export const setFavouriteTeams = async (userId, teams) => {
   set(ref(db, `scores/users/${userId}`), { favouriteTeams: teams });
+};
+
+export const addLeague = async (id, league) => {
+  set(ref(db, `scores/leagues/${id}`), league);
 };
 
 export const auth = async (userData) => {
@@ -106,21 +122,4 @@ export const deleteUser = async (id) => {
   if (!response.ok) {
     throw new Error(data.message || "Could not fetch.");
   }
-};
-
-export const getFavourites = async (userId) => {
-  const response = await fetch(`${url}/users/${userId}/favouriteTeams.json`);
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.error.message || "Could not fetch.");
-  }
-
-  const dataArray = [];
-
-  for (let key in data) {
-    dataArray.push(data[key]);
-  }
-
-  return dataArray;
 };

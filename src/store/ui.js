@@ -2,7 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let logoutTimer;
 
-const uiInitialState = {
+const setLogoutTimer = () => {
+  const remainingTime =
+    localStorage.getItem("expirationTime") - new Date().getTime();
+
+  logoutTimer = setTimeout(() => {
+    uiSlice.actions.logout();
+  }, remainingTime);
+};
+
+let uiInitialState = {
   loggedIn: false,
   token: null,
   userId: null,
@@ -13,27 +22,40 @@ const uiInitialState = {
   },
 };
 
+const expirationTime = localStorage.getItem("expirationTime");
+const token = localStorage.getItem("token");
+const userId = localStorage.getItem("userId");
+
+if (expirationTime && token && userId) {
+  if (new Date().getTime() < expirationTime) {
+    uiInitialState = {
+      ...uiInitialState,
+      loggedIn: true,
+      token,
+      userId,
+    };
+
+    setLogoutTimer();
+  } else {
+    localStorage.removeItem("token");
+    localStorage.removeItem("expirationTime");
+    localStorage.removeItem("userId");
+  }
+}
+
 const loginHandler = (state, action) => {
   state.loggedIn = true;
   state.token = action.payload.token;
   state.userId = action.payload.userId;
 
-  if (!action.payload.isRetrieved) {
-    localStorage.setItem("token", action.payload.token);
-    localStorage.setItem(
-      "expirationTime",
-      new Date().getTime() + action.payload.expirationTime * 1000
-    );
-    localStorage.setItem("userId", action.payload.userId);
-  }
+  localStorage.setItem("token", action.payload.token);
+  localStorage.setItem(
+    "expirationTime",
+    new Date().getTime() + action.payload.expirationTime * 1000
+  );
+  localStorage.setItem("userId", action.payload.userId);
 
-  const remainingTime =
-    localStorage.getItem("expirationTime") - new Date().getTime();
-
-  clearTimeout(logoutTimer);
-  logoutTimer = setTimeout(() => {
-    logoutHandler();
-  }, remainingTime);
+  setLogoutTimer();
 };
 
 const logoutHandler = (state) => {
@@ -42,6 +64,8 @@ const logoutHandler = (state) => {
   localStorage.removeItem("token");
   localStorage.removeItem("expirationTime");
   localStorage.removeItem("userId");
+
+  clearTimeout(logoutTimer);
 };
 
 const uiSlice = createSlice({

@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./Score.module.css";
-import Card from "../../../UI/Card/Card";
 import ScoreTeams from "./ScoreTeams/ScoreTeams";
 import ScoreLabel from "./ScoreLabel/ScoreLabel";
 import DateLabel from "./DateLabel/DateLabel";
@@ -15,7 +14,6 @@ const Score = (props) => {
   
   return (
     <li className={classes.score}>
-      <Card off={props.cardOff ? true : false}>
       <ScoreTeams leftTeam={leftTeam} rightTeam={rightTeam} />
         <ScoreLabel
           leftScore={props.leftScore}
@@ -24,7 +22,6 @@ const Score = (props) => {
           rightTeam={rightTeam}
         />
         <DateLabel date={props.date} />
-      </Card>
     </li>
   );
 };

@@ -7,110 +7,84 @@ import Favourites from "./pages/Favourites";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
 import Contribution from "./components/Contribution/Contribution";
-import { uiActions } from "./store/ui";
-
-// const DUMMY_SCORES = [
-//   {
-//     id: "s1",
-//     leftScore: 2,
-//     rightScore: 1,
-//     leftTeam: "t1",
-//     rightTeam: "t2",
-//     date: "2002-11-27 12:00",
-//   },
-//   {
-//     id: "s2",
-//     leftScore: 1,
-//     rightScore: 1,
-//     leftTeam: "t3",
-//     rightTeam: "t4",
-//     date: "2002-11-27 10:00",
-//   },
-//   {
-//     id: "s3",
-//     leftScore: 2,
-//     rightScore: 1,
-//     leftTeam: "t1",
-//     rightTeam: "t5",
-//     date: "2002-11-27 8:00",
-//   },
-// ];
-
-// const DUMMY_TEAMS = [
-//   {
-//     id: "t1",
-//     name: "Manchester United",
-//     short: "MAN",
-//     logo:
-//       "https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1024px-Manchester_United_FC_crest.svg.png",
-//   },
-//   {
-//     id: "t2",
-//     name: "FC Barcelona",
-//     short: "FCB",
-//     logo:
-//       "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1024px-FC_Barcelona_%28crest%29.svg.png",
-//   },
-//   {
-//     id: "t3",
-//     name: "Legia Warszawa",
-//     short: "WAW",
-//     logo:
-//       "https://upload.wikimedia.org/wikipedia/en/thumb/6/6d/Legia_Warsaw_logo.svg/800px-Legia_Warsaw_logo.svg.png",
-//   },
-//   {
-//     id: "t4",
-//     name: "FC Stanowice",
-//     short: "FCS",
-//     logo:
-//       "https://scontent-waw1-1.xx.fbcdn.net/v/t1.6435-9/71053761_1505708006238230_7396881720433180672_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=0hPPXgG_sSkAX8Oc9XO&_nc_ht=scontent-waw1-1.xx&oh=00_AT9fAW7Z4a4Ol8IamvXcwF0YzkCbHhwF4jCAy0B_pfMSwA&oe=632AA9BC",
-//   },
-//   {
-//     id: "t5",
-//     name: "Real Madrid",
-//     short: "REM",
-//     logo:
-//       "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/800px-Real_Madrid_CF.svg.png",
-//   },
-// ];
+import useHttp from "./hooks/use-http";
+import { loadAllTeams, loadAllFavourites } from "./lib/api";
+import { teamsActions } from "./store/teams";
+import LoadingSpinner from "./UI/LoadingSpinner/LoadingSpinner";
 
 function App() {
-  const loggedIn = useSelector((state) => state.ui.loggedIn);
   const dispatch = useDispatch();
+  const loggedIn = useSelector((state) => state.ui.loggedIn);
+  const userId = useSelector((state) => state.ui.userId);
+
+  const {
+    sendRequest: loadTeams,
+    status: teamsStatus,
+    data: teams,
+    error: teamsError,
+  } = useHttp(loadAllTeams, true);
+
+  const {
+    sendRequest: loadFavourites,
+    status: favouritesStatus,
+    data: favourites,
+    error: favouritesError,
+  } = useHttp(loadAllFavourites, true);
 
   useEffect(() => {
-    if (!loggedIn) {
-      const expirationTime = localStorage.getItem("expirationTime");
-      const token = localStorage.getItem("token");
-      const userId = localStorage.getItem("userId");
+    loadTeams();
+  }, []);
 
-      if (expirationTime && token && userId) {
-        if (new Date().getTime() < expirationTime) {
-          dispatch(
-            uiActions.login({
-              token,
-              expirationTime,
-              userId,
-              isRetrieved: true,
-            })
-          );
-        } else {
-          localStorage.removeItem("token");
-          localStorage.removeItem("expirationTime");
-        }
-      }
+  useEffect(() => {
+    if (loggedIn) {
+      loadFavourites(userId);
     }
-  });
+  }, [loggedIn]);
+
+  useEffect(() => {
+    if (favouritesStatus === "completed") {
+      dispatch(teamsActions.setFavourites({ favourites }));
+    }
+  }, [favouritesStatus]);
+
+  useEffect(() => {
+    if (teamsStatus === "completed") {
+      dispatch(teamsActions.setTeams({ teams }));
+    }
+  }, [teamsStatus, teams]);
+
+  let content = (
+    <Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="/favourites" element={<Favourites />} />
+      <Route path="/login" element={<Login />} />
+      {loggedIn && <Route path="/account" element={<Account />} />}
+      <Route path="/*" element={<Navigate replace to="/" />} />
+    </Routes>
+  );
+
+  if (teamsError || favouritesError) {
+    content = (
+      <div className="centered">
+        <p>Something went wrong</p>
+      </div>
+    );
+  }
+
+  if (
+    teamsStatus === "pending" ||
+    (loggedIn && favouritesStatus === "pending")
+  ) {
+    content = (
+      <div className="centered">
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
     <Layout>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/favourites" element={<Favourites />} />
-        <Route path="/login" element={<Login />} />
-        {loggedIn && <Route path="/account" element={<Account />} />}
-        <Route path="/*" element={<Navigate replace to="/" />} />
-      </Routes>
+      {content}
       <Contribution />
     </Layout>
   );

@@ -3,13 +3,20 @@ import classes from "./DateLabel.module.css";
 import dateIcon from "../../../../assets/date.png";
 
 const DateLabel = (props) => {
-  const date = new Date(props.date).toLocaleString("ddmmyyyy", {
+  let dateConfig = {
     day: "numeric",
     month: "short",
     year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  });
+  };
+
+  if (!props.isDate) {
+    dateConfig = {
+      hour: "numeric",
+      minute: "2-digit",
+    }
+  };
+
+  const date = new Date(props.date).toLocaleString("ddmmyyyy", dateConfig);
 
   return (
     <div className={classes["date-label"]}>

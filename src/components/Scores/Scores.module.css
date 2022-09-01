@@ -1,0 +1,12 @@
+.scores-list {
+  margin: auto;
+  text-align: center;
+  grid-column: 1 / 4;
+  grid-row: 3 / 4;
+}
+
+.scores-list ul {
+  list-style: none;
+  margin: auto;
+  display: inline-block;
+}
