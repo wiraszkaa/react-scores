@@ -36,7 +36,7 @@ const Main = () => {
   useEffect(() => {
     loadScores();
     loadTeams();
-  },[]);
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {
@@ -45,12 +45,18 @@ const Main = () => {
   }, [loggedIn]);
 
   useEffect(() => {
-    if (scoresStatus === "completed" && teamsStatus === "completed" && (loggedIn ? favouritesStatus === "completed" : true)) {
-      dispatch(teamsActions.setTeams({teams}));
-      dispatch(scoresActions.setScores({scores}));
-      dispatch(teamsActions.setFavourites({favourites}));
+    if (
+      scoresStatus === "completed" &&
+      teamsStatus === "completed" &&
+      (loggedIn ? favouritesStatus === "completed" : true)
+    ) {
+      dispatch(teamsActions.setTeams({ teams }));
+      dispatch(scoresActions.setScores({ scores }));
+      if (loggedIn) {
+        dispatch(teamsActions.setFavourites({ favourites }));
+      }
     }
-  },[scoresStatus, teamsStatus, teams, scores]);
+  }, [scoresStatus, teamsStatus, teams, scores]);
 
   if (teamsError || scoresError || favouritesError) {
     return (
@@ -60,7 +66,11 @@ const Main = () => {
     );
   }
 
-  if (scoresStatus === "pending" || teamsStatus === "pending" || (loggedIn && favouritesStatus === "pending")) {
+  if (
+    scoresStatus === "pending" ||
+    teamsStatus === "pending" ||
+    (loggedIn && favouritesStatus === "pending")
+  ) {
     return (
       <div className="centered">
         <LoadingSpinner />
