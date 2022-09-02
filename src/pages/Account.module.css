@@ -1,6 +1,14 @@
 .account {
+  margin-top: 6rem;
+  position: absolute;
+  top: 0;
   display: grid;
   text-align: center;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto;
+  width: fit-content;
 }
 
 .account h1 {

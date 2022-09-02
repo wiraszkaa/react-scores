@@ -7,7 +7,7 @@ import { useSelector } from "react-redux/es/exports";
 
 
 const Score = (props) => {
-  const teams = useSelector((state) => state.teams.teams);
+  const teams = useSelector((state) => state.data.teams);
 
   const leftTeam = teams.find((team) => team.id === props.leftTeam);
   const rightTeam = teams.find((team) => team.id === props.rightTeam);

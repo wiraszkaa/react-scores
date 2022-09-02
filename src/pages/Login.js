@@ -6,6 +6,7 @@ import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
 import { useDispatch } from "react-redux";
 import { uiActions } from "../store/ui";
 import { useNavigate } from "react-router-dom";
+import classes from "./Login.module.css";
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -57,7 +58,9 @@ const Login = () => {
 
   return (
     <>
-      <LoginForm onAuth={authHandler} />
+      <div className={classes.login}>
+        <LoginForm onAuth={authHandler} />
+      </div>
     </>
   );
 };

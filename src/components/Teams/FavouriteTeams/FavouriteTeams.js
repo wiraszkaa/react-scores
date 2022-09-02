@@ -4,11 +4,11 @@ import { useSelector } from "react-redux/es/exports";
 import classes from "./FavouriteTeams.module.css";
 
 const FavouriteTeams = () => {
-  const favourites = useSelector((state) => state.teams.favourites);
+  const favourites = useSelector((state) => state.favourites.favourites);
   let content = <p>Currently there are no favourites.</p>;
 
   if (favourites.length > 0) {
-    content = favourites.map((team) => <Team id={team.id} key={team.id} />);
+    content = favourites.map((team) => <Team team={team} key={team.id} />);
   }
 
   return (

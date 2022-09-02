@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { teamsActions } from "../../../../store/teams";
+import { favouritesActions } from "../../../../store/favourites";
 import classes from "./ScoreTeams.module.css";
 import followOnIcon from "../../../../assets/followon.png";
 import followOffIcon from "../../../../assets/followoff.png";
@@ -8,7 +8,7 @@ import followOffIcon from "../../../../assets/followoff.png";
 const ScoreTeams = (props) => {
   const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.ui.loggedIn);
-  const favourites = useSelector((state) => state.teams.favourites);
+  const favourites = useSelector((state) => state.favourites.favourites);
   const userId = useSelector((state) => state.ui.userId);
 
   const isLeftFollowed =
@@ -19,11 +19,11 @@ const ScoreTeams = (props) => {
   const teamLabel = `${props.leftTeam.short} - ${props.rightTeam.short}`;
 
   const leftFavouritesHandler = () => {
-    dispatch(teamsActions.toggleFavourite({userId, team: props.leftTeam}));
+    dispatch(favouritesActions.toggleFavourite({userId, team: props.leftTeam}));
   };
 
   const rightFavouritesHandler = () => {
-    dispatch(teamsActions.toggleFavourite({userId, team: props.rightTeam}));
+    dispatch(favouritesActions.toggleFavourite({userId, team: props.rightTeam}));
   };
 
   return (

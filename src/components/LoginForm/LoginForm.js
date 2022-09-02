@@ -39,7 +39,7 @@ const LoginForm = (props) => {
     inputChangeHandler: confPasswordBlurHandler,
   } = useInput((password) => password === enteredPassword);
 
-  const formIsValid = emailIsValid && passwordIsValid;
+  const formIsValid = emailIsValid && (passwordIsValid || isLogin);
 
   const toogleAuthHandler = () => {
     setIsLogin(!isLogin);
@@ -50,7 +50,7 @@ const LoginForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    if (emailHasError || passwordHasError || confPasswordHasError) {
+    if (emailHasError || (passwordHasError) || confPasswordHasError) {
       return;
     };
 
@@ -79,7 +79,7 @@ const LoginForm = (props) => {
         </div>
         <div
           className={`${classes["form-control"]} ${
-            passwordHasError ? classes["invalid"] : ""
+            (passwordHasError && !isLogin) ? classes["invalid"] : ""
           }`}
         >
           <label htmlFor="password">Password</label>
@@ -90,7 +90,7 @@ const LoginForm = (props) => {
             type="password"
             value={enteredPassword}
           />
-          {passwordHasError && (
+          {passwordHasError && !isLogin && (
             <p className={classes["error-text"]}>
               Password must have at least 7 characters.
             </p>
@@ -116,7 +116,7 @@ const LoginForm = (props) => {
           )}
         </div>}
         <div className={classes["form-actions"]}>
-          <button disabled={!formIsValid}>
+          <button disabled={!(formIsValid && isLogin)}>
             {isLogin ? "Login" : "Sign Up"}
           </button>
         </div>

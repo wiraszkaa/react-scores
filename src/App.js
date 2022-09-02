@@ -6,10 +6,11 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Favourites from "./pages/Favourites";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
-import Contribution from "./components/Contribution/Contribution";
+import Attribution from "./components/Attribution/Attribution";
 import useHttp from "./hooks/use-http";
 import { loadAllTeams, loadAllFavourites } from "./lib/api";
-import { teamsActions } from "./store/teams";
+import { dataActions } from "./store/data";
+import { favouritesActions } from "./store/favourites";
 import LoadingSpinner from "./UI/LoadingSpinner/LoadingSpinner";
 
 function App() {
@@ -43,13 +44,13 @@ function App() {
 
   useEffect(() => {
     if (favouritesStatus === "completed") {
-      dispatch(teamsActions.setFavourites({ favourites }));
+      dispatch(favouritesActions.setFavourites(favourites));
     }
   }, [favouritesStatus]);
 
   useEffect(() => {
     if (teamsStatus === "completed") {
-      dispatch(teamsActions.setTeams({ teams }));
+      dispatch(dataActions.setTeams(teams));
     }
   }, [teamsStatus, teams]);
 
@@ -85,7 +86,7 @@ function App() {
   return (
     <Layout>
       {content}
-      <Contribution />
+      <Attribution />
     </Layout>
   );
 }

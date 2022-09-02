@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from "../../../UI/Card/Card";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import ScoresList from "../../Scores/Scores";
-import { teamsActions } from "../../../store/teams";
+import { favouritesActions } from "../../../store/favourites";
 import classes from "./Team.module.css";
 import followOnIcon from "../../../assets/followon.png";
 
@@ -11,13 +11,10 @@ const Team = (props) => {
   const dispatch = useDispatch();
 
   const userId = useSelector((state) => state.ui.userId);
-  const team = useSelector((state) => state.teams.teams).find(
-    (team) => team.id === props.id
-  );
-  const scores = useSelector((state) => state.scores.scores);
+  const scores = useSelector((state) => state.data.scores);
 
   const removeFavouriteHandler = () => {
-    dispatch(teamsActions.toggleFavourite({ userId, team }));
+    dispatch(favouritesActions.toggleFavourite({ userId, team: props.team }));
   };
 
   const toggleMatchesHandler = () => {
@@ -31,14 +28,14 @@ const Team = (props) => {
         <button className={classes.remove} onClick={removeFavouriteHandler}>
           <img src={followOnIcon} alt="Follow" />
         </button>
-        <h1>{team.name}</h1>
-        <img className={classes.logo} src={team.logo} alt={team.short} />
+        <h1>{props.team.name}</h1>
+        <img className={classes.logo} src={props.team.logo} alt={props.team.short} />
         <button className={classes.show} onClick={toggleMatchesHandler}>
           {showMatches ? "Hide Matches" : "Show Matches"}
         </button>
         {showMatches && <ScoresList
         scores={scores.filter(
-          (score) => score.leftTeam === team.id || score.rightTeam === team.id
+          (score) => score.leftTeam === props.team.id || score.rightTeam === props.team.id
         )}
         cardOff={true}
       />}

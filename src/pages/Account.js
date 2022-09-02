@@ -4,6 +4,7 @@ import { uiActions } from "../store/ui";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { deleteUser } from "../lib/api";
 import classes from "./Account.module.css";
+import Card from "../UI/Card/Card";
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -27,11 +28,11 @@ const Account = () => {
   };
 
   return (
-    <div className={classes.account}>
+    <Card className={classes.account}>
       <h1>Your Account</h1>
       <button onClick={signoutHandler}>Sign Out</button>
       <button onClick={deleteHandler}>Delete Account</button>
-    </div>
+    </Card>
   );
 };
 
