@@ -34,12 +34,13 @@ const LoginForm = (props) => {
 
   const {
     value: enteredConfPassword,
+    isValid: confPasswordIsValid,
     hasError: confPasswordHasError,
     valueChangeHandler: confPasswordChangeHandler,
     inputChangeHandler: confPasswordBlurHandler,
   } = useInput((password) => password === enteredPassword);
 
-  const formIsValid = emailIsValid && (passwordIsValid || isLogin);
+  const formIsValid = emailIsValid && (passwordIsValid || isLogin) && confPasswordIsValid;
 
   const toogleAuthHandler = () => {
     setIsLogin(!isLogin);
@@ -116,7 +117,7 @@ const LoginForm = (props) => {
           )}
         </div>}
         <div className={classes["form-actions"]}>
-          <button disabled={!(formIsValid && isLogin)}>
+          <button disabled={!(formIsValid || isLogin)}>
             {isLogin ? "Login" : "Sign Up"}
           </button>
         </div>

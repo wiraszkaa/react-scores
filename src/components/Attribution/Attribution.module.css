@@ -5,8 +5,20 @@
   position: fixed;
   bottom: 0;
   padding-left: 1rem;
+  opacity: 0.4;
+  align-items: center;
+}
+
+.attribution p {
+  margin: auto;
+  padding-top: 1rem;
 }
 
 .attribution a {
   margin: auto;
+}
+
+.sourceCode {
+  font-size: large;
+  font-weight: bold;
 }
