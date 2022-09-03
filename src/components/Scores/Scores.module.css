@@ -1,6 +1,5 @@
 .scores-list {
   margin: auto;
-  text-align: center;
   grid-column: 1 / 4;
   grid-row: 3 / 4;
 }
@@ -9,4 +8,5 @@
   list-style: none;
   margin: auto;
   display: inline-block;
+  align-items: center;
 }

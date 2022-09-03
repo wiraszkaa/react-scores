@@ -6,4 +6,5 @@
 .leagues ul {
   list-style: none;
   margin: auto;
+  align-items: center;
 }

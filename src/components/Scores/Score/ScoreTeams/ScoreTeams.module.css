@@ -5,7 +5,7 @@
 .score-teams h1 {
   display: inline;
   padding: 10px;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 .score-teams img {
@@ -16,6 +16,7 @@
 .score-teams button {
   border: 0;
   background-color: white;
+  vertical-align: middle;
 }
 
 .score-teams button:active,

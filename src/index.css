@@ -8,12 +8,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 p {
+  font-family: 'Lato', sans-serif;
   font-size: large;
 }
 
@@ -23,8 +19,19 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 5rem;
+  position: absolute;
+  top: 0;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto;
 }
 
 .error-text {
   color: #b40e0e;
+}
+
+h1 {
+  font-family: 'Comfortaa', cursive;
 }

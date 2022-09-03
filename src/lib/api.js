@@ -85,6 +85,14 @@ export const addLeague = async (id, league) => {
   set(ref(db, `scores/leagues/${id}`), league);
 };
 
+export const setTeams = async (id, teams) => {
+  set(ref(db, `scores/leagues/${id}/teams`), teams);
+};
+
+export const setScores = async (id, scores) => {
+  set(ref(db, `scores/leagues/${id}/scores`), scores);
+};
+
 export const auth = async (userData) => {
   const response = await fetch(
     `${userData.isLogin ? loginUrl : signUpUrl}${apiKey}`,

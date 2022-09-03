@@ -16,6 +16,9 @@ const dataSlice = createSlice({
     setTeams(state, action) {
       state.teams = action.payload;
     },
+    addTeams(state, action) {
+      state.teams = state.teams.concat(action.payload);
+    },
     addScores(state, action) {
       state.scores = state.scores.concat(action.payload);
     },

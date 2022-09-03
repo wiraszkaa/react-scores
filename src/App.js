@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import Account from "./pages/Account";
 import Attribution from "./components/Attribution/Attribution";
 import useHttp from "./hooks/use-http";
-import { loadAllTeams, loadAllFavourites } from "./lib/api";
+import { loadAllFavourites, loadAllLeagues } from "./lib/api";
 import { dataActions } from "./store/data";
 import { favouritesActions } from "./store/favourites";
 import LoadingSpinner from "./UI/LoadingSpinner/LoadingSpinner";
@@ -19,22 +19,18 @@ function App() {
   const userId = useSelector((state) => state.ui.userId);
 
   const {
-    sendRequest: loadTeams,
-    status: teamsStatus,
-    data: teams,
-    error: teamsError,
-  } = useHttp(loadAllTeams, true);
-
-  const {
     sendRequest: loadFavourites,
     status: favouritesStatus,
     data: favourites,
     error: favouritesError,
   } = useHttp(loadAllFavourites, true);
 
-  useEffect(() => {
-    loadTeams();
-  }, []);
+  const {
+    sendRequest: loadLeagues,
+    status: leaguesStatus,
+    data: leagues,
+    error: leaguesError,
+  } = useHttp(loadAllLeagues, true);
 
   useEffect(() => {
     if (loggedIn) {
@@ -43,28 +39,32 @@ function App() {
   }, [loggedIn]);
 
   useEffect(() => {
+    loadLeagues();
+  }, [loadLeagues]);
+
+  useEffect(() => {
     if (favouritesStatus === "completed") {
       dispatch(favouritesActions.setFavourites(favourites));
     }
   }, [favouritesStatus]);
 
   useEffect(() => {
-    if (teamsStatus === "completed") {
-      dispatch(dataActions.setTeams(teams));
+    if (leaguesStatus === "completed") {
+      dispatch(dataActions.setLeagues(leagues));
+      leagues.forEach((league) => {
+        dispatch(dataActions.addScores(league.scores));
+        dispatch(dataActions.addTeams(league.teams));
+      });
     }
-  }, [teamsStatus, teams]);
+  }, [leaguesStatus]);
 
   let content = (
-    <Routes>
-      <Route path="/" element={<Main />} />
-      <Route path="/favourites" element={<Favourites />} />
-      <Route path="/login" element={<Login />} />
-      {loggedIn && <Route path="/account" element={<Account />} />}
-      <Route path="/*" element={<Navigate replace to="/" />} />
-    </Routes>
+    <div className="centered">
+      <LoadingSpinner />
+    </div>
   );
 
-  if (teamsError || favouritesError) {
+  if (favouritesError || leaguesError) {
     content = (
       <div className="centered">
         <p>Something went wrong</p>
@@ -73,13 +73,16 @@ function App() {
   }
 
   if (
-    teamsStatus === "pending" ||
-    (loggedIn && favouritesStatus === "pending")
+    leaguesStatus === "completed" && (!loggedIn || favouritesStatus === "completed")
   ) {
     content = (
-      <div className="centered">
-        <LoadingSpinner />
-      </div>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/favourites" element={<Favourites />} />
+        <Route path="/login" element={<Login />} />
+        {loggedIn && <Route path="/account" element={<Account />} />}
+        <Route path="/*" element={<Navigate replace to="/" />} />
+      </Routes>
     );
   }
 

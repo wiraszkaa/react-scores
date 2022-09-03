@@ -2,8 +2,7 @@
   margin: auto;
   padding: 1mm;
   padding-top: 2mm;
-  text-align: center;
-  width: fit-content;
+  align-items: center;
 }
 
 .score p {
