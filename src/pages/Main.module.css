@@ -1,9 +1,7 @@
 .main {
-  margin-top: 5rem;
+  margin-top: 4rem;
+  width: 100%;
   position: absolute;
-  top: 0;
-  left: 0; 
-  right: 0; 
-  margin-left: auto; 
-  margin-right: auto;
+  display: flex;
+  justify-content: center;
 }

@@ -6,11 +6,12 @@
     display: inline;
     padding: 10px;
     vertical-align: middle;
-    margin-right: 1rem;
+    margin-right: 2vw;
+    font-size: calc(10px + 1.8vw);
   }
   
   .leagueLabel img {
-    height: 32px;
+    height: calc(10px + 2vw);
     width: auto;
     vertical-align: middle;
   }

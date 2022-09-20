@@ -1,5 +1,5 @@
 .score-label img {
-  height: 50px;
+  height: calc(35px + 2vw);
   width: auto;
   padding-right: 10px;
   padding-left: 10px;
@@ -8,6 +8,6 @@
 
 .score-label p {
   display: inline;
-  font-size: 35px;
+  font-size: calc(20px + 1.5vw);
   vertical-align: middle;
 }

@@ -14,7 +14,11 @@ const Favourites = () => {
     );
   }
 
-  return <FavouriteTeams />;
+  return (
+    <div className="centered">
+      <FavouriteTeams />
+    </div>
+  );
 };
 
 export default Favourites;

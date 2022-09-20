@@ -31,18 +31,7 @@
   display: flex;
   align-items: baseline;
   color: #ffffff;
-}
-
-.infoModal a {
-  text-decoration: none;
-  font-size: 1.5rem;
-  color: #ffffff;
-}
-
-.infoModal a:hover,
-.infoModal a:active,
-.infoModal a.active {
-  color: rgb(184, 181, 181);
+  font-size: 2.2vw;
 }
 
 .enterActive {

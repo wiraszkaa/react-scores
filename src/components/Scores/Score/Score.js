@@ -1,5 +1,4 @@
 import React from "react";
-import classes from "./Score.module.css";
 import ScoreTeams from "./ScoreTeams/ScoreTeams";
 import ScoreLabel from "./ScoreLabel/ScoreLabel";
 import DateLabel from "./DateLabel/DateLabel";
@@ -13,7 +12,7 @@ const Score = (props) => {
   const rightTeam = teams.find((team) => team.id === props.rightTeam);
   
   return (
-    <li className={classes.score}>
+    <li>
       <ScoreTeams leftTeam={leftTeam} rightTeam={rightTeam} />
         <ScoreLabel
           leftScore={props.leftScore}

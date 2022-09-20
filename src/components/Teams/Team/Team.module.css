@@ -1,31 +1,31 @@
 .team {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: 80px 300px 80px;
   grid-template-rows: auto auto auto;
-  grid-row-gap: 20px;
-  justify-content: center;
+  row-gap: 1vw;
+  column-gap: 1vw;
 }
 
 .team h1 {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  font-size: calc(10px + 1.8vw);
   margin: auto;
-  text-align: center;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
 }
 
 .logo {
   margin: auto;
-  height: 80px;
+  height: calc(40px + 2vw);
   width: auto;
   grid-column: 3 / 4;
   grid-row: 1 / 2;
 }
 
 .remove {
-  margin: auto;
+  margin: 0;
+  padding: 0;
   background-color: white;
   border: 0;
   grid-column: 1 / 2;
@@ -33,7 +33,7 @@
 }
 
 .remove img {
-  height: 32px;
+  height: calc(20px + 2vw);
   width: auto;
 }
 
@@ -44,6 +44,7 @@
 
 .show {
   margin: auto;
+  font-size: calc(5px + 1vw);
   grid-column: 2 / 3;
   grid-row: 2 / 3;
 }

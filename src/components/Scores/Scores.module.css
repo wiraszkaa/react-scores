@@ -1,12 +1,4 @@
 .scores-list {
-  margin: auto;
   grid-column: 1 / 4;
   grid-row: 3 / 4;
-}
-
-.scores-list ul {
-  list-style: none;
-  margin: auto;
-  display: inline-block;
-  align-items: center;
 }

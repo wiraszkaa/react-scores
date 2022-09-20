@@ -3,7 +3,7 @@ import DateLabel from "./Score/DateLabel/DateLabel";
 import Score from "./Score/Score";
 import classes from "./Scores.module.css";
 
-const ScoresList = (props) => {
+const Scores = (props) => {
   let content = <p>Currently there are no scores.</p>;
   if (props.scores.length > 0) {
     content = [];
@@ -38,4 +38,4 @@ const ScoresList = (props) => {
   );
 };
 
-export default ScoresList;
+export default Scores;

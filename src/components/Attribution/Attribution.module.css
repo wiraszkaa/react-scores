@@ -12,13 +12,15 @@
 .attribution p {
   margin: auto;
   padding-top: 1rem;
+  font-size: calc(5px + 1vw);
 }
 
 .attribution a {
+  font-size: calc(4px + 1vw);
   margin: auto;
 }
 
 .sourceCode {
-  font-size: large;
+  font-size: calc(8px + 1vw);
   font-weight: bold;
 }
