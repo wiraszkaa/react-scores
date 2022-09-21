@@ -1,3 +1,22 @@
-.layout {
-    display: flex;
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+}
+
+.mainImage {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.mainImage img {
+  width: auto;
+  height: 100%;
+  filter: brightness(50%);
 }

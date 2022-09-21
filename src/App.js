@@ -78,7 +78,7 @@ function App() {
     content = (
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/favourites" element={<Favourites />} />
+        {loggedIn && <Route path="/favourites" element={<Favourites />} />}
         <Route path="/login" element={<Login />} />
         {loggedIn && <Route path="/account" element={<Account />} />}
         <Route path="/*" element={<Navigate replace to="/" />} />

@@ -4,6 +4,7 @@ import InfoModal from "../../components/InfoModal/InfoModal";
 import classes from "./Layout.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui";
+import image from "../../assets/background.jpg";
 
 let timeout;
 
@@ -20,9 +21,12 @@ const Layout = (props) => {
 
   return (
     <div className={classes.layout}>
+      <div className={classes.mainImage}>
+        <img src={image} alt="" />
+      </div>
       <Header />
       <InfoModal />
-      {props.children}
+      <main className={classes.main}>{props.children}</main>
     </div>
   );
 };
