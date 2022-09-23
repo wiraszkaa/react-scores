@@ -11,16 +11,8 @@
   background-color: #175e09;
 }
 
-.logo {
-  font-size: 2rem;
-  color: white;
-  font-weight: bold;
-}
-
 .header ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   align-items: baseline;
 }
@@ -29,18 +21,37 @@
   margin-left: 7vw;
 }
 
+.header img {
+  height: 3rem;
+  width: auto;
+}
+
+.header nav {
+  padding-right: 10%;
+}
+
 .header a {
   text-decoration: none;
-  font-size: calc(1rem + 0.6vw);
-  color: #ffffff;
+  color: white;
+  font-size: calc(10px + 0.8vw);
 }
 
-.header a:hover,
-.header a:active,
-.header a.active {
-  color: rgb(184, 181, 181);
+.logo {
+  padding-left: 10%;
 }
 
-.active a {
-  color: rgb(184, 181, 181);
+.logo span {
+  font-size: calc(1rem + 1vw);
+  margin: 0;
+}
+
+.active img {
+  opacity: 0.7;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  column-gap: 7px;  
+  color: white;
 }

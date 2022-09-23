@@ -1,6 +1,6 @@
 .league {
   margin: auto;
-  padding: 1mm;
-  padding-top: 2mm;
-  width: fit-content;
+  padding-top: 5px;
+  margin: 1vw 0;
+  width: 100%;
 }

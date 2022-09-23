@@ -13,6 +13,10 @@ p {
   font-size: large;
 }
 
+h1 {
+  /* font-family: 'Comfortaa', cursive; */
+}
+
 .centered {
   margin: 8rem auto;
   text-align: center;
@@ -29,6 +33,11 @@ p {
   color: #b40e0e;
 }
 
-h1 {
-  font-family: 'Comfortaa', cursive;
+.info {
+  text-align: center;
+}
+
+.info p {
+  margin: 0.4vw;
+  font-size: calc(0.8rem + 0.8vw);
 }

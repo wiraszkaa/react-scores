@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux/es/exports";
 import ScoresList from "../../Scores/Scores";
 import { favouritesActions } from "../../../store/favourites";
 import classes from "./Team.module.css";
-import followOnIcon from "../../../assets/followon.png";
+import followOnIcon from "../../../assets/full_heart.png";
 
 const Team = (props) => {
   const [showMatches, setShowMatches] = useState(false);

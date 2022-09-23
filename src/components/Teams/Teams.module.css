@@ -1,8 +1,9 @@
-.favourite-teams {
+.teams {
   width: fit-content;
+  text-align: center;
 }
 
-.favourite-teams ul {
+.teams ul {
   padding-left: 0;
   list-style: none;
 }

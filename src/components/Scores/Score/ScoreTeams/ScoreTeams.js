@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { favouritesActions } from "../../../../store/favourites";
 import classes from "./ScoreTeams.module.css";
-import followOnIcon from "../../../../assets/followon.png";
-import followOffIcon from "../../../../assets/followoff.png";
+import followOnIcon from "../../../../assets/full_heart.png";
+import followOffIcon from "../../../../assets/heart.png";
 
 const ScoreTeams = (props) => {
   const dispatch = useDispatch();

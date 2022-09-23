@@ -39,26 +39,26 @@
   flex: 1;
 }
 
-button {
+.form-actions button {
   margin: auto;
   font: inherit;
   background-color: #165f04;
   color: white;
   border: 1px solid #08500c;
   padding: 0.5rem 1.5rem;
-  border-radius: 4px;
+  border-radius: 15px;
   cursor: pointer;
 }
 
-button:hover,
-button:active {
+.form-actions button:hover,
+.form-actions button:active {
   background-color: #08500c;
   border-color: #165f04;
 }
 
-button:disabled,
-button:disabled:hover,
-button:disabled:active {
+.form-actions button:disabled,
+.form-actions button:disabled:hover,
+.form-actions button:disabled:active {
   background-color: #8d8d8d;
   color: #252525;
   border-color: #8d8d8d;
@@ -81,10 +81,6 @@ button:disabled:active {
 .invalid input:focus {
   border-color: #ff8800;
   background-color: #fbe8d2;
-}
-
-.error-text {
-  color: #b40e0e;
 }
 
 .form {

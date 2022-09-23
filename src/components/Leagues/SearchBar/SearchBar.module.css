@@ -1,23 +1,31 @@
 .searchBar {
-  padding: 2vw;
+  width: 100%;
+  height: calc(17px + 2vw);
+  padding: 2vw 0;
   opacity: 0.7;
   text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.searchBar img {
+  height: 70%;
+  width: auto;
+  padding-right: 0.8vw;
 }
 
 .searchBar input,
 .searchBar select {
   font: inherit;
   font-size: calc(10px + 1.5vw);
-  padding: 0.3vw;
-  border-radius: 10px;
+  border-radius: calc(5px + 0.8vw);
   border: 1px solid #ccc;
-  width: calc(4rem + 30vw);
-  max-width: 100%;
+  width: 100%;
   text-align: center;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .searchBar input:focus {
   outline: none;
-  border-color: #4d8143;
-  background-color: #c0eeb7;
+  background: none;
 }

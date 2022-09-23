@@ -111,7 +111,7 @@ const LoginForm = (props) => {
             value={enteredConfPassword}
           />
           {confPasswordHasError && (
-            <p className={classes["error-text"]}>
+            <p className="error-text">
               Passwords must be the same.
             </p>
           )}
