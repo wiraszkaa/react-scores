@@ -10,11 +10,29 @@ body {
 
 p {
   font-family: 'Lato', sans-serif;
-  font-size: large;
+  font-size: calc(1rem + 0.8vw);
 }
 
 h1 {
   /* font-family: 'Comfortaa', cursive; */
+  font-size: calc(1.5rem + 1vw);
+}
+
+button {
+  font-size: calc(1rem + 0.4vw);
+  margin: auto;
+  background-color: #165f04;
+  color: white;
+  border: 1px solid #08500c;
+  padding: 0.5rem 1.5rem;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+button:hover,
+button:active {
+  background-color: #08500c;
+  border-color: #165f04;
 }
 
 .centered {

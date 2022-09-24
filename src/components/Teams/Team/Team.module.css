@@ -9,7 +9,6 @@
 .team h1 {
   padding-left: 1vw;
   padding-right: 1vw;
-  font-size: calc(10px + 1.8vw);
   margin: auto;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
@@ -44,7 +43,6 @@
 
 .show {
   margin: auto;
-  font-size: calc(5px + 1vw);
   grid-column: 2 / 3;
   grid-row: 2 / 3;
 }

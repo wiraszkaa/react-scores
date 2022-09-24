@@ -7,6 +7,5 @@
 
 .date-label p {
   display: inline;
-  font-size: calc(13px + 1vw);
   vertical-align: middle;
 }
