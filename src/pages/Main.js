@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Leagues from "../components/Leagues/Leagues";
 import classes from "./Main.module.css";
-import SearchBar from "../components/Leagues/SearchBar/SearchBar";
+import SearchBar from "../UI/SearchBar/SearchBar";
 import Teams from "../components/Teams/Teams";
 import Card from "../UI/Card/Card";
 
 const Main = () => {
   const [searchValue, setSearchValue] = useState("");
-  const leagues = useSelector((state) => state.data.leagues);
-  const teams = useSelector((state) => state.data.teams);
+  const { leagues, teams } = useSelector(
+    (state) => state.data
+  );
 
   const searchHandler = (event) => {
     setSearchValue(event.target.value);
@@ -30,16 +31,18 @@ const Main = () => {
   }
 
   return (
-    <Card className={classes.main}>
+    <div className={classes.main}>
+      <Card>
       <SearchBar search={searchHandler} />
       <Leagues leagues={filteredLeagues} />
       <Teams teams={filteredTeams} />
       {filteredLeagues.length === 0 && filteredTeams.length === 0 && (
         <div className="info">
-          <p>No results found</p>
+          <p>No results found.</p>
         </div>
       )}
     </Card>
+    </div>
   );
 };
 

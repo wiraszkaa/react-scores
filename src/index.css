@@ -8,6 +8,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
 p {
   font-family: 'Lato', sans-serif;
   font-size: calc(1rem + 0.8vw);
@@ -15,7 +22,7 @@ p {
 
 h1 {
   /* font-family: 'Comfortaa', cursive; */
-  font-size: calc(1.5rem + 1vw);
+  font-size: calc(1rem + 1vw);
 }
 
 button {
@@ -27,6 +34,7 @@ button {
   padding: 0.5rem 1.5rem;
   border-radius: 15px;
   cursor: pointer;
+  text-align: center;
 }
 
 button:hover,

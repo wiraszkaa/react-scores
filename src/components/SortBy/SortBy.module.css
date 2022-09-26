@@ -1,0 +1,17 @@
+.sortBy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: calc(10px + 1.5vw);
+}
+
+.sortBy label {
+    margin-right: 0.5rem;
+}
+
+.sortBy select {
+    border-radius: 10px;
+    font-size: calc(10px + 1.5vw);
+    text-align: center;
+}

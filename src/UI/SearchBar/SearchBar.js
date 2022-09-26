@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./SearchBar.module.css";
-import findIcon from "../../../assets/find.png";
+import findIcon from "../../assets/find.png";
 
 const SearchBar = (props) => {
   const [placeholder, setPlaceHolder] = useState("Search for a league or a team");

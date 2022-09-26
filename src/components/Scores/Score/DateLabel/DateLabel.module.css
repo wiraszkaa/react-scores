@@ -1,11 +1,19 @@
-.date-label img {
+.dateLabel {
+  width: 100%;
+  padding: 0 1rem;
+  transform: translateX(-1rem);
+  left: -1rem;
+  background-color: rgb(0, 0, 0, 0.1);
+}
+
+.dateLabel img {
   height: calc(10px + 1vw);
   width: auto;
   padding-right: 10px;
   vertical-align: middle;
 }
 
-.date-label p {
+.dateLabel p {
   display: inline;
   vertical-align: middle;
 }

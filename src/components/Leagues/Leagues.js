@@ -1,6 +1,5 @@
 import React from "react";
 import League from "./League/League";
-import classes from "./Leagues.module.css";
 
 const Leagues = (props) => {
   const content = props.leagues.map((league) => (
@@ -13,7 +12,7 @@ const Leagues = (props) => {
   ));
 
   return (
-    <div className={classes.leagues}>
+    <div>
       <ul>{content}</ul>
     </div>
   );

@@ -1,4 +1,8 @@
-.scores-list {
-  grid-column: 1 / 4;
-  grid-row: 3 / 4;
+.scores {
+    width: 100%;
+}
+
+.scores ul {
+    display: flex;
+    flex-direction: column;
 }

@@ -17,31 +17,15 @@
   text-align: center;
 }
 
-.account button {
-  margin: auto;
-  text-align: center;
-  margin-bottom: 1rem;
-  cursor: pointer;
-}
-
-.signOut {
-  background-color: rgba(4, 85, 8, 0.5);
-  padding: 0.5rem 1rem;
-  border: 1px solid rgba(2, 49, 5, 0.5);
-  border-radius: 20px;
-}
-
-.signOut:hover,
-.signOut:active {
-  background-color: rgba(2, 49, 5, 0.5);
-  border: 1px solid rgba(4, 85, 8, 0.5);
-}
-
 .delete {
+  background: none;
+  color: #252525;
   border: none;
-  background-color: white;
+  padding-bottom: 2rem;
 }
 
-.delete:hover {
+.delete:hover,
+.delete:active {
   color: red;
+  background: none;
 }

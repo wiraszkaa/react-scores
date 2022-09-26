@@ -9,8 +9,9 @@
 }
 
 .score-teams img {
-  height: calc(10px + 2vw);
+  height: calc(12px + 1vw);
   width: auto;
+  vertical-align: middle;
 }
 
 .score-teams button {

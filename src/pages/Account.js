@@ -31,7 +31,7 @@ const Account = () => {
     <Card className={classes.account}>
       <h1>Your Account</h1>
       <button onClick={deleteHandler} className={classes.delete}>Delete Account</button>
-      <button onClick={signoutHandler} className={classes.signOut}>Sign Out</button>
+      <button onClick={signoutHandler}>Sign Out</button>
     </Card>
   );
 };

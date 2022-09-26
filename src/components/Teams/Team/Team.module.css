@@ -1,25 +1,22 @@
 .team {
   margin-top: 1rem;
-  display: grid;
-  grid-template-rows: auto auto auto;
-  row-gap: 1vw;
-  column-gap: 1vw;
+  max-width: 30rem;
+  width: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .team h1 {
-  padding-left: 1vw;
-  padding-right: 1vw;
-  margin: auto;
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
+  padding: 0;
+  margin: 0;
 }
 
 .logo {
-  margin: auto;
+  margin: 0;
   height: calc(40px + 2vw);
   width: auto;
-  grid-column: 3 / 4;
-  grid-row: 1 / 2;
 }
 
 .remove {
@@ -27,8 +24,7 @@
   padding: 0;
   background-color: white;
   border: 0;
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
+  cursor: pointer;
 }
 
 .remove img {
@@ -42,7 +38,6 @@
 }
 
 .show {
-  margin: auto;
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
+  margin: 1rem 0;
+  width: 100%;
 }

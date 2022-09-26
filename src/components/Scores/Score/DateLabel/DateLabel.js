@@ -20,7 +20,7 @@ const DateLabel = (props) => {
   const date = new Date(props.date).toLocaleString("ddmmyyyy", dateConfig);
 
   return (
-    <div className={classes["date-label"]}>
+    <div className={classes.dateLabel}>
       <img src={props.isDate ? dateIcon : clockIcon} alt="Calendar" />
       <p>{date}</p>
     </div>
